@@ -1,23 +1,42 @@
 <div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+  <h1><a href="/">Welcome to Dummy Users</a></h1>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
+  <h2>Create a new user:</h2>
+
+  <form action="/create_user" method="post">
+    <p>First Name:</p>
+    <p><input type="text" name="first_name"></p>
+    <p>Last Name:</p>
+    <p><input type="text" name="last_name"></p>
+    <p>Email:</p>
+    <p><input type="text" name="email"></p>
+    <p>Password:</p>
+    <p><input type="password" name="password"></p>
+    <p><input type="submit" value="Create User">
+  </form>
+
+  <% if @user_success==true %>
+    <p>User successfully created</p>
+  <% elsif @user_success==false %>
+    <p>User information is invalid! Try again</p>
+  <% end %>
+
+  <h2>Login:</h2>
+
+  <form action="/login" method="post">
+    <p>Email:</p>
+    <p><input type="text" name="email"></p>
+    <p>Password:</p>
+    <p><input type="password" name="password"></p>
+    <p><input type="submit" value="Login">
+  </form>
+
+  <% if @user_login_success==true %>
+    <p>Logged in!</p>
+  <% elsif @user_login_success==false %>
+    <p>Email/password combination invalid. Try again</p>
+  <% end %>
+
+  
+  <button><a href="/secretpage">open!</a></button>
 </div>
